@@ -1,0 +1,85 @@
+﻿@model Edu.Models.LoginModel
+@{
+    Layout = "~/Views/Shared/_LayoutAce.cshtml";
+}
+@section Css{
+    <style type="text/css">
+    .login-container{
+        margin: 15% auto;
+    }
+        </style>
+}
+<div class="main-container">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="login-container">
+                    <div class="center">
+                        <h1> 
+                            <span class="white">后台登录</span>
+                        </h1>
+                    </div>
+
+                    <div class="space-6"></div>
+                    <div class="position-relative">
+                        <div id="login-box" class="login-box visible widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header blue lighter bigger">
+                                        <i class="ace-icon fa fa-coffee green"></i>
+                                        输入登录信息
+                                    </h4>
+
+                                    <div class="space-6"></div>
+
+                                    <form class="form-vertical" id="fmLogin" method="post">
+                                        <fieldset>
+                                            <label class="block clearfix">
+                                                <span class="block input-icon input-icon-right">
+                                                    @Html.TextBoxFor(p => p.Account, new { checktype = "required", requiredmessage = "不能为空", placeholder = "用户名", @class = "form-control" })
+                                                    <i class="ace-icon fa fa-user"></i>
+                                                </span>
+                                            </label>
+
+                                            <label class="block clearfix">
+                                                <span class="block input-icon input-icon-right">
+                                                    @Html.PasswordFor(p => p.Password, new { @class = "form-control", placeholder = "密码", checktype = "required", requiredmessage = "不能为空" })
+                                                    <i class="ace-icon fa fa-lock"></i>
+                                                </span>
+                                            </label>
+
+                                            <div class="space"></div>
+
+                                            <div class="clearfix">
+                                                @Html.ValidationSummary(true)
+                                                <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+                                                    <i class="ace-icon fa fa-key"></i>
+                                                    <span class="bigger-110">登录</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="space-4"></div>
+                                        </fieldset>
+                                    </form>
+
+                                </div><!-- /.widget-main -->
+
+                            </div><!-- /.widget-body -->
+                        </div><!-- /.login-box -->
+
+                    </div><!-- /.position-relative -->
+
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+@section Js{
+    <script type="text/javascript">
+        $(function () {
+            $("body").addClass("login-layout blur-login")
+        })
+    </script>
+}

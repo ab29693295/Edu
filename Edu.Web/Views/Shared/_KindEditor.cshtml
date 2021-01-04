@@ -1,0 +1,24 @@
+﻿<script src="~/Tookit/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function (k) {
+        editor = k.create(".fcontent", {
+            themeType: 'default',
+            width: '550px',
+            height: '200px',
+            uploadJson: '/KindEditorHandler/Upload',
+            allowFileManager: false,
+            fileManagerJson: '/KindEditorHandler/FileManager',
+            items: [
+    'source', '|', 'preview', 'template',
+    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+    'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+    'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+    'anchor', 'link', 'unlink'
+            ],
+        });
+    });
+</script>

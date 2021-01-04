@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="~/Tookit/ace/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Tookit/ace/assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Tookit/ace/assets/css/ace-fonts.css" />
+    <link rel="stylesheet" href="~/Tookit/ace/assets/css/ace.min.css" id="main-ace-style" />
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/Tookit/ace/assets/css/ace-part2.min.css" />
+    <![endif]-->
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="~/Tookit/ace/assets/css/ace-ie.min.css" />
+    <![endif]-->
+    <link href="~/Content/Css/Common.css" rel="stylesheet" />
+    @RenderSection("Css", false)
+
+    <!--[if lte IE 8]>
+    <script src="~/Tookit/ace/assets/js/html5shiv.min.js"></script>
+    <script src="~/Tookit/ace/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/Tookit/ace/assets/js/jquery.min.js'>" + "<" + "/script>");
+    </script>
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='/Tookit/ace/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='/Tookit/ace/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="/Tookit/ace/assets/js/bootstrap.min.js"></script>
+    <!--[if lte IE 8]>
+          <script src="/Tookit/ace/assets/js/excanvas.min.js"></script>
+        <![endif]-->
+    <script src="/Tookit/ace/assets/js/ace.js"></script>
+    <script src="/Tookit/ace/assets/js/jquery-ui.custom.min.js"></script>
+    <script src="/Tookit/ace/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/Tookit/ace/assets/js/ace-elements.min.js"></script>
+
+    <script src="~/Tookit/bootstrap/js/bootstrap3-validation.js"></script>
+
+    @*<script src="~/Scripts/jquery-migrate-1.2.1.js"></script>*@
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Scripts/JsWindows.js"></script>
+    <script src="~/Scripts/JsCommon.js"></script>
+    <script src="~/Tookit/layer/layer.js"></script>
+ 
+</head>
+<body>
+    @RenderBody()
+    @RenderSection("Js", false)
+</body>
+</html>

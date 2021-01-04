@@ -1,0 +1,8 @@
+﻿<script type="text/jscript">
+    alert("@ViewBag.alert");
+    @ViewBag.js;
+    if ("@ViewBag.Url" != "") {
+        window.location.href = '@Html.Raw(ViewBag.Url)';
+    }
+</script>
+@Html.Raw(ViewBag.UcenterJs)

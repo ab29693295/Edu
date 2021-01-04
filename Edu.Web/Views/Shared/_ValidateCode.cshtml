@@ -1,0 +1,10 @@
+﻿<img id="valiCode" style="cursor: pointer; margin-bottom: -10px;"
+    alt="验证码" />
+<script type="text/javascript">
+    $(function () {
+        $("#valiCode").attr("src", "@Url.Action("GetValidateCode", "Account",new { area="",time=DateTime.Now.ToString()})" );
+        $("#valiCode").bind("click", function () {
+            this.src = "@Url.Action("GetValidateCode", "Account", new { area = "", time = DateTime.Now.ToString() })" +"&" + Math.random();;
+        });
+    });
+</script>
