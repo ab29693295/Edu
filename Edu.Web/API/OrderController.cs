@@ -52,7 +52,7 @@ namespace Edu.Web.API
                         }
                         if (child.Name == "Price")//价格
                         {
-                            _order.Price =Convert.ToDouble( child.InnerText);
+                            _order.Price =Convert.ToDouble(child.InnerText);
                         }
                         if (child.Name == "PayStatus")//支付状态
                         {
@@ -79,18 +79,18 @@ namespace Edu.Web.API
                 var isSave = unitOfWork.SaveRMsg();
                 if (isSave == "True")
                 {
-                    return Json(new { R = true });
+                    return Json(new { R = true ,OrderID= _order.ID});
                 }
                 else
                 {
-                    return Json(new { R = false });
+                    return Json(new { R = false,OrderID=0 });
                 }
 
             }
             catch (Exception ex)
             {
                 Edu.Tools.LogHelper.Info(ex.ToString());
-                return Json(new { R = false });
+                return Json(new { R = false, OrderID = 0 });
             }
 
         }
