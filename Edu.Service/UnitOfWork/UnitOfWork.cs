@@ -23,9 +23,21 @@ namespace Edu.Service
                 return _DEduContext;
             }
         }
+        private DLogInfo _DLogInfo;
 
-		
-		private DEquipment _DEquipment;
+        public DLogInfo DLogInfo
+        {
+            get
+            {
+                if (this._DLogInfo == null)
+                {
+                    this._DLogInfo = new DLogInfo(context);
+                }
+                return _DLogInfo;
+            }
+        }
+
+        private DEquipment _DEquipment;
       
         public DEquipment DEquipment
         {

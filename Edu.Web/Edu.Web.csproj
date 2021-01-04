@@ -149,6 +149,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\FunMenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -211,6 +212,7 @@
     <Content Include="Areas\Admin\Views\UserInfo\_Search.cshtml" />
     <Content Include="Areas\Admin\Views\UserRole\Index.cshtml" />
     <Content Include="Areas\Admin\Views\UserRole\_Op.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

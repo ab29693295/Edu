@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Context\EduContext.cs" />
     <Compile Include="Entity\Equipment.cs" />
+    <Compile Include="Entity\LogInfo.cs" />
     <Compile Include="Entity\Menu.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\OrderPhoto.cs" />
