@@ -11,8 +11,8 @@ namespace Edu.Entity
             : base("name=EduContext")
         {
         }
-        
-       public virtual DbSet<LogInfo> LogInfo { get; set; }
+        public virtual DbSet<OrderPhoto> OrderPhoto { get; set; }
+        public virtual DbSet<LogInfo> LogInfo { get; set; }
         public virtual DbSet<Equipment> Equipment { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Order> Order { get; set; }
