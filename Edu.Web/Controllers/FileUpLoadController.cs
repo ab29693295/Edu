@@ -21,7 +21,7 @@ namespace Edu.Web.Controllers
                 string ImageName = CombHelper.GenerateOrderNumber() + ".png";
                 //传过来的图片
                 var file = Request.Files[0];
-                string fPath = "/File/" + OrderID.ToString() + "/" + ImageName;
+                string fPath = "/File/" + OrderID.ToString() ;//+"/" + ImageName
                 //保存到本地或服务器
 
                 if (!Directory.Exists(System.Web.HttpContext.Current.Server.MapPath(fPath)))
