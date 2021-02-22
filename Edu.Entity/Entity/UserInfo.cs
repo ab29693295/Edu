@@ -34,6 +34,13 @@ namespace Edu.Entity
         /// </summary>
         public System.String TrueName { get { return this._TrueName; } set { this._TrueName = value; } }
 
+
+        private System.String _Phone;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String Phone { get { return this._Phone; } set { this._Phone = value; } }
+
         private System.Int32? _Sex;
         /// <summary>
         /// 
@@ -81,5 +88,12 @@ namespace Edu.Entity
         /// 
         /// </summary>
         public System.Int32? Status { get { return this._Status; } set { this._Status = value; } }
+
+        private System.String _Address;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String Address { get { return this._Address; } set { this._Address = value; } }
+
     }
 }
