@@ -416,12 +416,12 @@
     <Content Include="Views\UserInfo\Add.cshtml" />
     <Content Include="Views\UserInfo\PassoWordEdit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Equipment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\Template\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Equipment\" />
     <Folder Include="Views\FileUpLoad\" />
   </ItemGroup>
   <ItemGroup>
