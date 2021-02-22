@@ -41,6 +41,7 @@ namespace Edu.Web.Controllers
 
             return View(user);
         }
+     
 
         [HttpPost]
         public ActionResult Mody(UserInfo user)
@@ -74,6 +75,111 @@ namespace Edu.Web.Controllers
             {
                 return Json(new { r = false, m = "操作失败\n" + result.Message }, JsonRequestBehavior.AllowGet);
 
+            }
+        }
+
+
+        /// <summary>
+        /// 密码修改
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <returns></returns>
+        public ActionResult PassoWordEdit(int rid)
+        {
+            var user = unitOfWork.DUserInfo.GetByID(rid);
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult PassWordMody(UserInfo user)
+        {
+            OperationResult result = null;
+            var old = unitOfWork.DUserInfo.GetByID(user.ID);
+
+            if (old != null)
+            {
+            
+                unitOfWork.DUserInfo.Update(old, user, new List<string>(this.Request.Form.AllKeys.AsEnumerable()));
+                result = unitOfWork.Save();
+
+            }
+            if (result.ResultType == OperationResultType.Success)
+            {
+                return Json(new { r = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { r = false, m = "操作失败\n" + result.Message }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <returns></returns>
+        public ActionResult DeleteOp(int rid)
+        {
+            unitOfWork.DUserInfo.Delete(rid);
+            OperationResult result = unitOfWork.Save();
+            if (result.ResultType == OperationResultType.Success)
+            {
+                return Json(new { r = true, m = "" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { r = false, m = result.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// 批量删除用户
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <returns></returns>
+        public ActionResult DeleteAll(string  rids)
+        {
+            string[] ridArr = rids.Split(',');
+            foreach (var id in ridArr)
+            {
+                int rid = Convert.ToInt32(id);
+                unitOfWork.DUserInfo.Delete(rid);
+            }
+
+         
+            OperationResult result = unitOfWork.Save();
+            if (result.ResultType == OperationResultType.Success)
+            {
+                return Json(new { r = true, m = "" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { r = false, m = result.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// 更改用户状态
+        /// </summary>
+        /// <param name="rid"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+
+        public ActionResult UpdateStatus(int rid, int status)
+        {
+            var user = unitOfWork.DUserInfo.GetByID(rid);
+            user.Status = status;
+            unitOfWork.DUserInfo.Update(user);
+            OperationResult result = unitOfWork.Save();
+            if (result.ResultType == OperationResultType.Success)
+            {
+                return Json(new { r = true, m = "" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { r = false, m = result.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 

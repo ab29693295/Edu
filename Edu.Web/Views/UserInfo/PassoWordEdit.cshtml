@@ -21,8 +21,9 @@
     <script type="text/javascript" src="~/Content/X-Admin/js/xadmin.js"></script>
     <style type="text/css">
         .layui-input {
-            width:300px;
+            width: 300px;
         }
+
         .layui-form-item .layui-input-inline {
             float: left;
             width: 300px;
@@ -33,7 +34,7 @@
 
 <body>
     <div class="x-body">
-        @using (Html.BeginForm("Mody", "UserInfo", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
+        @using (Html.BeginForm("PassWordMody", "UserInfo", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
         {
             @Html.HiddenFor(p => p.ID)
 
@@ -47,36 +48,12 @@
 
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>真实姓名：
-                </label>
-                <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.TrueName, new { @class = "layui-input", autocomplete = "off", placeholder = "真实姓名" })
-
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="Sex" value="男" title="男" checked="">
-                    <input type="radio" name="Sex" value="女" title="女">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>手机号：
-                </label>
-                <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.Phone, new { @class = "layui-input", autocomplete = "off", placeholder = "手机号" })
-
-                </div>
-            </div>
+        
 
 
             <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span>密码
+                    <span class="x-red">*</span>新密码
                 </label>
                 <div class="layui-input-inline">
                     <input type="password" id="L_pass" name="PassWord" required="" lay-verify="pass"
@@ -96,15 +73,6 @@
                 </div>
             </div>
 
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>住址：
-                </label>
-                <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.Address, new { @class = "layui-input", autocomplete = "off", style = "width: 500px;", placeholder = "住址" })
-
-                </div>
-            </div>
         }
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">

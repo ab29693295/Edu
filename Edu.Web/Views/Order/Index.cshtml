@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Edu.Entity.UserInfo>
+﻿@model IEnumerable<Edu.Entity.Order>
 @{
     Layout = null;
 }
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/Content/X-Admin/css/font.css">
     <link rel="stylesheet" href="~/Content/X-Admin/css/xadmin.css">
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-   
+
     <script type="text/javascript" src="~/Content/X-Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="~/Content/X-Admin/js/xadmin.js"></script>
 
@@ -38,8 +38,18 @@
     <div class="x-body">
         <div class="layui-row">
             <form class="layui-form layui-col-md12 x-so">
+                <input class="layui-input" placeholder="开始日" name="start" id="start_Input">
+                <input class="layui-input" placeholder="截止日" name="end" id="end_Input">
+                <div class="layui-input-inline">
+                    <select name="contrller" id="paySelect">
+                        <option value="2">支付状态</option>
+                        <option value="1">已支付</option>
+                        <option value="0">未支付</option>
+                    </select>
+                </div>
 
-                <input type="text" value="@(ViewBag.sn)" id="ProName" name="username" placeholder="请输入用户名/真实姓名/手机号" style="width:250px;" autocomplete="off" class="layui-input">
+                <input type="text" id="ProName" value="@(ViewBag.sn)" name="username" placeholder="请输入订单号" autocomplete="off" class="layui-input">
+
                 <button class="layui-btn" type="button" id="BtnSearch"><i class="layui-icon">&#xe615;</i></button>
             </form>
         </div>
@@ -54,14 +64,14 @@
                     <th>
                         <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
                     </th>
-                    <th>用户名</th>
-                    <th>真实姓名</th>
-                    <th>性别</th>
-                    <th>手机</th>
-                    <th>登录账号</th>
-                    <th>地址</th>
-                    <th>加入时间</th>
-                    <th>状态</th>
+                    <th>订单编号</th>
+                    <th>套餐类型</th>
+                    <th>费用(元)</th>
+                    <th>支付状态</th>
+                    <th>订单状态</th>
+                    <th>设备编号</th>
+                    <th>设备所属</th>
+                    <th>下单时间</th>
                     <th>操作</th>
                 </tr>
             </thead>
@@ -71,37 +81,46 @@
                 {
                     foreach (var item in Model)
                     {
+                        string trueName = "";
+                        var user = new Edu.Service.UnitOfWork().DUserInfo.GetByID(item.EqUserID);
+                        if (user != null)
+                        {
+                            trueName = user.TrueName;
+                        }
                         <tr>
                             <td>
                                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='@(item.ID)'><i class="layui-icon">&#xe605;</i></div>
                             </td>
-                            <td>@(item.UserName)</td>
-                            <td>@(item.TrueName)</td>
-                            <td>@(item.Sex == 1 ? "男" : "女")</td>
-                            <td>@(item.Phone)</td>
-                            <td>@(item.UserName)</td>
-                            <td>@(item.Address)</td>
-                            <td>@(item.CreatDate)</td>
-                            <td class="td-status">
-                                @if (item.Status == 1)
+                            <td>@(item.OrderID)</td>
+                            <td>@(item.MealName)</td>
+                            <td>@(item.Price)</td>
+                            <td lass="td-status">
+                                @if (item.PayStatus == 1)
                                 {
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>
+                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已支付</span>
                                 }
                                 else
                                 {
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已停用</span>
+                                    <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">未支付</span>
                                 }
                             </td>
+                            <td lass="td-status">
+                                @if (item.Status == 1)
+                                {
+                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已完成</span>
+                                }
+                                else
+                                {
+                                    <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">未完成</span>
+                                }
+                            </td>
+                            <td>@(item.EqID)</td>
+                            <td>@(trueName)</td>
+                            <td>
+                                @(item.CreatDate)
+                            </td>
                             <td class="td-manage">
-                                <a onclick="member_stop(this,'@(item.ID)')" href="javascript:;" title="启用">
-                                    <i class="layui-icon">&#xe601;</i>
-                                </a>
-                                <a title="编辑" onclick="x_admin_show('编辑','/UserInfo/Add?id=@(item.ID)',800,600)" href="javascript:;">
-                                    <i class="layui-icon">&#xe642;</i>
-                                </a>
-                                <a onclick="x_admin_show('修改密码','/UserInfo/PassoWordEdit?id=@(item.ID)',600,400)" title="修改密码" href="javascript:;">
-                                    <i class="layui-icon">&#xe631;</i>
-                                </a>
+                              
                                 <a title="删除" onclick="member_del(this,'@(item.ID)')" href="javascript:;">
                                     <i class="layui-icon">&#xe640;</i>
                                 </a>
@@ -110,23 +129,23 @@
                     }
                 }
 
-            
+
             </tbody>
         </table>
         @Html.Partial("_Pager")
     </div>
     <script>
-    layui.use('laydate', function () {
+        layui.use('laydate', function () {
             var laydate = layui.laydate;
 
             //执行一个laydate实例
             laydate.render({
-                elem: '#start' //指定元素
+                elem: '#start_Input' //指定元素
             });
 
             //执行一个laydate实例
             laydate.render({
-                elem: '#end' //指定元素
+                elem: '#end_Input' //指定元素
             });
         });
 
@@ -206,7 +225,7 @@
                         layer.msg("删除失败");
                     }
                 })
-          
+
                 //捉到所有被选中的，发异步进行删除
                 layer.msg('删除成功', { icon: 1 });
                 $(".layui-form-checked").not('.header').parents('tr').remove();
@@ -216,9 +235,12 @@
     <script type="text/javascript">
         $(function () {
             $("#BtnSearch").click(function () {
-                var name = $("#ProName").val();
+                var startDate = $("#start_Input").val();
+                var endDate = $("#end_Input").val();
+                var payStatus = $("#paySelect").val();
+                var sn = $("#ProName").val();
                 //var tID = $("#TypeID").val();
-                window.location.href = "/UserInfo/Index?sn=" + name;
+                window.location.href = "/UserInfo/Index?sn=" + sn + "&startDt=" + startDate + "&endDt=" + endDate + "&payStatus=" + payStatus;
             })
         })
     </script>
