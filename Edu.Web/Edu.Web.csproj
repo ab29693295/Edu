@@ -424,12 +424,13 @@
     <Content Include="Views\WelCome\_Order.cshtml" />
     <Content Include="Views\WelCome\_Users.cshtml" />
     <Content Include="Views\WelCome\_Equip.cshtml" />
+    <Content Include="Views\Border\Index.cshtml" />
+    <Content Include="Views\Border\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\Template\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Border\" />
     <Folder Include="Views\FileUpLoad\" />
   </ItemGroup>
   <ItemGroup>
