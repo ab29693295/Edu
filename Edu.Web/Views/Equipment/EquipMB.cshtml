@@ -1,17 +1,195 @@
-﻿
+﻿@model Edu.Entity.EquipMB
 @{
     Layout = null;
+
+   
 }
 
 <!DOCTYPE html>
-
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>EquipMB</title>
+    <meta charset="UTF-8">
+    <title>四格光影</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/Content/X-Admin/css/font.css">
+    <link rel="stylesheet" href="~/Content/X-Admin/css/xadmin.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Content/X-Admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="~/Content/X-Admin/js/xadmin.js"></script>
+    <style type="text/css">
+        .layui-input {
+            width: 300px;
+        }
+
+        .layui-form-item .layui-input-inline {
+            float: left;
+            width: 300px;
+            margin-right: 10px
+        }
+    </style>
 </head>
+
 <body>
-    <div> 
+    <div class="x-body">
+        @using (Html.BeginForm("Mody", "Equipment", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
+        {
+            @Html.HiddenFor(p => p.EqID)
+
+
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>美白：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaMB, new { @class = "layui-input", autocomplete = "off", placeholder = "美白0-100" })
+
+            </div>
+
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>磨皮：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaMP, new { @class = "layui-input", autocomplete = "off", placeholder = "磨皮0-100" })
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>大眼：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaDY, new { @class = "layui-input", autocomplete = "off", placeholder = "大眼0-100" })
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>眼袋：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaYD, new { @class = "layui-input", autocomplete = "off", placeholder = "眼袋0-100" })
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>鼻梁：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaBL, new { @class = "layui-input", autocomplete = "off", placeholder = "鼻梁0-100" })
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>雀斑：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaQB, new { @class = "layui-input", autocomplete = "off", placeholder = "雀斑0-100" })
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>美唇：
+            </label>
+            <div class="layui-input-inline">
+                @Html.TextBoxFor(p => p.BeaMC, new { @class = "layui-input", autocomplete = "off", placeholder = "美唇0-100" })
+
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                只能填写数字0-100
+            </div>
+        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">自动雀斑</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="BeaZDQB" value="1" title="是" checked="">
+                    <input type="radio" name="BeaZDQB" value="0" title="否">
+                </div>
+            </div>
+            
+
+
+        }
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <button class="layui-btn" lay-filter="add" id="AddButton">
+                保存
+            </button>
+        </div>
     </div>
+
+
+    <script>
+                layui.use(['form', 'layer'], function () {
+                    $ = layui.jquery;
+                    var form = layui.form
+                        , layer = layui.layer;
+
+
+                    //form.on('select(test)', function (data) {
+
+                    //    $("#TypeID").val(data.value)
+
+                    //});
+                });
+    </script>
+    <script type="text/javascript">
+               
+                $("#AddButton").click(function () {
+
+                  
+
+
+                    var load = layer.load();
+                    //异步提交
+                    $('#proForm').ajaxSubmit(function (data) {
+                        layer.close(load);
+                        if (data.r) {
+                            layer.alert("保存成功", { icon: 6 }, function () {
+                                // 获得frame索引
+                                var index = parent.layer.getFrameIndex(window.name);
+                                //关闭当前frame
+                                parent.layer.close(index);
+                                parent.location.reload();
+                            });
+                        }
+                        else {
+                            layer.alert(data.m);
+                        }
+                    });
+                    return false;
+
+                })
+    </script>
 </body>
 </html>

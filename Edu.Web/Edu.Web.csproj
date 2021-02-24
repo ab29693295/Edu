@@ -418,6 +418,7 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Equipment\Add.cshtml" />
+    <Content Include="Views\Equipment\EquipMB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

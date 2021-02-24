@@ -81,5 +81,11 @@ namespace Edu.Entity
         /// 
         /// </summary>
         public System.DateTime? CreatDate { get { return this._CreatDate; } set { this._CreatDate = value; } }
+
+        private System.String _EquipID;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String EquipID { get { return this._EquipID; } set { this._EquipID = value; } }
     }
 }

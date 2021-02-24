@@ -3,7 +3,7 @@
 }
 <!-- 顶部开始 -->
 <div class="container">
-    <div class="logo"><a href="./index.html">X-admin v2.0</a></div>
+    <div class="logo"><a href="./index.html">四格光影</a></div>
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
     </div>
@@ -12,9 +12,9 @@
             <a href="javascript:;">+新增</a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
-                <dd><a onclick="x_admin_show('资讯','http://www.baidu.com')"><i class="iconfont">&#xe6a2;</i>资讯</a></dd>
-                <dd><a onclick="x_admin_show('图片','http://www.baidu.com')"><i class="iconfont">&#xe6a8;</i>图片</a></dd>
-                <dd><a onclick="x_admin_show('用户','http://www.baidu.com')"><i class="iconfont">&#xe6b8;</i>用户</a></dd>
+      
+                <dd><a onclick="x_admin_show('图片','@Url.Action("Add","Equipment")')"><i class="iconfont">&#xe6a8;</i>设备</a></dd>
+                <dd><a onclick="x_admin_show('用户','@Url.Action("Add","UserInfo")')"><i class="iconfont">&#xe6b8;</i>会员</a></dd>
             </dl>
         </li>
     </ul>

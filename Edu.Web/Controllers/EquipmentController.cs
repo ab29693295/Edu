@@ -10,7 +10,7 @@ using Edu.Tools;
 
 namespace Edu.Web.Controllers
 {
-    public class EquipmentController : BaseControl
+    public class EquipmentController : UserBaseController
     {
         // GET: Equipment
         public ActionResult Index(string sn="" ,int pageNo=1)
@@ -30,6 +30,58 @@ namespace Edu.Web.Controllers
             ViewBag.PageNo = pageNo;//页码
             ViewBag.PageCount = paging.PageCount;//总页数
             return View(paging.EntityList);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult EquipMB(int? id)
+        {
+            var Equip = unitOfWork.DEquipment.GetByID(id);
+
+            ViewBag.EquipID = Equip.EqCode;
+
+            return View();
+        }
+
+        /// <summary>
+        /// 添加设备
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EquipMBMody(EquipMB equipment)
+        {
+            OperationResult result = null;
+            var old = unitOfWork.DEquipMB.GetByID(equipment.ID);
+
+            if (old == null)
+            {
+              
+                unitOfWork.DEquipMB.Insert(equipment);
+
+                result = unitOfWork.Save();
+
+            }
+            else
+            {
+
+
+
+                unitOfWork.DEquipMB.Update(old, equipment, new List<string>(this.Request.Form.AllKeys.AsEnumerable()));
+                result = unitOfWork.Save();
+
+            }
+            if (result.ResultType == OperationResultType.Success)
+            {
+                return Json(new { r = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { r = false, m = "操作失败\n" + result.Message }, JsonRequestBehavior.AllowGet);
+
+            }
         }
         /// <summary>
         /// 添加设备

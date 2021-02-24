@@ -38,7 +38,7 @@ namespace Edu.Service
     /// <summary>
     /// 实现非admin类权限控制的控制器
     /// </summary>
-    //[MyAuth]
+    [MyAuth]
     public class UserBaseController : BaseControl
     {
 

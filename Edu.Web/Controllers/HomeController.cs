@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Edu.Web.Controllers
 {
-    public class HomeController : BaseControl
+    public class HomeController : UserBaseController
     {
         public ActionResult Index()
         {

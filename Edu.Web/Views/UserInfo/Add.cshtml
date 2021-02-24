@@ -1,6 +1,13 @@
 ﻿@model Edu.Entity.UserInfo
 @{
     Layout = null;
+
+    string password = "";
+    if (Model != null)
+    {
+        password = Model.PassWord;
+    }
+
 }
 
 <!DOCTYPE html>
@@ -69,7 +76,6 @@
                 </label>
                 <div class="layui-input-inline">
                     @Html.TextBoxFor(p => p.Phone, new { @class = "layui-input", autocomplete = "off", placeholder = "手机号" })
-
                 </div>
             </div>
 
@@ -80,7 +86,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="password" id="L_pass" name="PassWord" required="" lay-verify="pass"
-                           autocomplete="off" class="layui-input" value="@(Model.PassWord)">
+                           autocomplete="off" class="layui-input" value="@(password)">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     6到16个字符
@@ -92,7 +98,7 @@
                 </label>
                 <div class="layui-input-inline">
                     <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
-                           autocomplete="off" class="layui-input" value="@(Model.PassWord)">
+                           autocomplete="off" class="layui-input" value="@(password)">
                 </div>
             </div>
 

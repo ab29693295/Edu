@@ -15,7 +15,7 @@ namespace Edu.Web.Controllers
         {
             Paging paging = new Paging();
             paging.PageNumber = pageNo;
-            var query = unitOfWork.DOrder.GetIQueryable(p => p.OrderID.Contains(sn), q => q.OrderByDescending(p => p.ID));
+            var query = unitOfWork.DOrder.GetIQueryable(p => p.OrderID.Contains(sn)||p.EquipID.Contains(sn), q => q.OrderByDescending(p => p.ID));
             if (!string.IsNullOrEmpty(startDt))
             {
                 DateTime sDt = Convert.ToDateTime(startDt);
