@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Edu.Web.Controllers
 {
-    public class UserInfoController : BaseControl
+    public class UserInfoController : UserBaseController
     {
         // GET: UserInfo
         public ActionResult Index(string sn = "", int pageNo = 1)

@@ -35,7 +35,7 @@ namespace Edu.Web.Controllers
             {
 
                 DateTime expiration = DateTime.Now.AddDays(7);
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(login.Account, true, 30000);
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(loginuser.ID.ToString(), true, 30000);
                 HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
                 Response.Cookies.Set(cookie);
 

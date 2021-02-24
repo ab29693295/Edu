@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Edu.Web.Controllers
 {
-    public class OrderController : BaseControl
+    public class OrderController : UserBaseController
     {
         // GET: Order
         public ActionResult Index(string startDt="",string endDt="",int payStatus=2,string sn = "", int pageNo = 1)

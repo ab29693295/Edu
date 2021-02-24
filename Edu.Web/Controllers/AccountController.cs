@@ -10,7 +10,7 @@ using Edu.Service;
 using Edu.Tools;
 namespace Edu.Web.Controllers
 {
-    public class AccountController : BaseControl
+    public class AccountController : UserBaseController
     {
 
         #region 管理员登录

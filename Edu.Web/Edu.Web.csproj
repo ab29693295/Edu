@@ -162,6 +162,7 @@
       <DependentUpon>AdminControllerTemple.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BorderController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\FileUpLoadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -366,6 +367,7 @@
     <Content Include="Content\X-Admin\user.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\echarts.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -419,11 +421,15 @@
     <Content Include="Views\Equipment\Index.cshtml" />
     <Content Include="Views\Equipment\Add.cshtml" />
     <Content Include="Views\Equipment\EquipMB.cshtml" />
+    <Content Include="Views\WelCome\_Order.cshtml" />
+    <Content Include="Views\WelCome\_Users.cshtml" />
+    <Content Include="Views\WelCome\_Equip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\Template\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Border\" />
     <Folder Include="Views\FileUpLoad\" />
   </ItemGroup>
   <ItemGroup>
