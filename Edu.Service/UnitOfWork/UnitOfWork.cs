@@ -37,6 +37,34 @@ namespace Edu.Service
             }
         }
 
+        private DEquipMB _DEquipMB;
+
+        public DEquipMB DEquipMB
+        {
+            get
+            {
+                if (this._DEquipMB == null)
+                {
+                    this._DEquipMB = new DEquipMB(context);
+                }
+                return _DEquipMB;
+            }
+        }
+
+        private DPhotoBorder _DPhotoBorder;
+
+        public DPhotoBorder DPhotoBorder
+        {
+            get
+            {
+                if (this._DPhotoBorder == null)
+                {
+                    this._DPhotoBorder = new DPhotoBorder(context);
+                }
+                return _DPhotoBorder;
+            }
+        }
+
         private DEquipment _DEquipment;
       
         public DEquipment DEquipment
