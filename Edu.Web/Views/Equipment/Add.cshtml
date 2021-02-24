@@ -1,6 +1,8 @@
-﻿@model Edu.Entity.UserInfo
+﻿@model Edu.Entity.Equipment
 @{
     Layout = null;
+
+    List<Edu.Entity.UserInfo> UserList = ViewBag.UserList as List<Edu.Entity.UserInfo>;
 }
 
 <!DOCTYPE html>
@@ -33,75 +35,62 @@
 
 <body>
     <div class="x-body">
-        @using (Html.BeginForm("Mody", "UserInfo", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
+        @using (Html.BeginForm("Mody", "Equipment", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
         {
             @Html.HiddenFor(p => p.ID)
-
+            @Html.HiddenFor(p => p.UserID)
+            @Html.HiddenFor(p => p.TrueName)
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>用户名：
+                    <span class="x-red">*</span>设备编号：
                 </label>
                 <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.UserName, new { @class = "layui-input", autocomplete = "off", placeholder = "用户名" })
+                    @Html.TextBoxFor(p => p.EqCode, new { @class = "layui-input", autocomplete = "off", placeholder = "设备编号" })
 
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>真实姓名：
-                </label>
-                <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.TrueName, new { @class = "layui-input", autocomplete = "off", placeholder = "真实姓名" })
-
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">性别</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="Sex" value="男" title="男" checked="">
-                    <input type="radio" name="Sex" value="女" title="女">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>手机号：
+                    <span class="x-red">*</span>设备名称：
                 </label>
                 <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.Phone, new { @class = "layui-input", autocomplete = "off", placeholder = "手机号" })
+                    @Html.TextBoxFor(p => p.EqName, new { @class = "layui-input", autocomplete = "off", placeholder = "设备名称" })
 
-                </div>
-            </div>
-
-
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span>密码
-                </label>
-                <div class="layui-input-inline">
-                    <input type="password" id="L_pass" name="PassWord" required="" lay-verify="pass"
-                           autocomplete="off" class="layui-input" value="@(Model.PassWord)">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    6到16个字符
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
-                    <span class="x-red">*</span>确认密码
-                </label>
-                <div class="layui-input-inline">
-                    <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
-                           autocomplete="off" class="layui-input" value="@(Model.PassWord)">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>住址：
+                    <span class="x-red">*</span>设备类型：
                 </label>
                 <div class="layui-input-inline">
-                    @Html.TextBoxFor(p => p.Address, new { @class = "layui-input", autocomplete = "off", style = "width: 500px;", placeholder = "住址" })
+                    @Html.TextBoxFor(p => p.EqType, new { @class = "layui-input", autocomplete = "off", placeholder = "设备类型" })
+
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户:</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" id="UserSelect" lay-verify="required" lay-search="">
+                            <option value="0">直接选择或搜索选择</option>
+                            @foreach (var user in UserList)
+                            {
+                                <option value="@(user.ID)">@(user.TrueName)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>设备地址：
+                </label>
+                <div class="layui-input-inline">
+                    @Html.TextBoxFor(p => p.Address, new { @class = "layui-input", autocomplete = "off", style = "width: 500px;", placeholder = "设备地址" })
 
                 </div>
             </div>
@@ -116,52 +105,59 @@
     </div>
 
 
-    <script>
-        layui.use(['form', 'layer'], function () {
-            $ = layui.jquery;
-            var form = layui.form
-            , layer = layui.layer;
+            <script>
+                layui.use(['form', 'layer'], function () {
+                    $ = layui.jquery;
+                    var form = layui.form
+                        , layer = layui.layer;
 
-            //自定义验证规则
-            form.verify({
-                pass: [/(.+){6,12}$/, '密码必须6到12位']
-                , repass: function (value) {
-                    if ($('#L_pass').val() != $('#L_repass').val()) {
-                        return '两次密码不一致';
+
+                    //form.on('select(test)', function (data) {
+
+                    //    $("#TypeID").val(data.value)
+
+                    //});
+                });
+            </script>
+            <script type="text/javascript">
+                $(function () {
+                    $("#EqCode").val('@(ViewBag.EqCode)');
+                })
+
+                $("#AddButton").click(function () {
+
+                    var select = $("#UserSelect option:selected");
+
+                    alert(select.val())
+                    alert(select.text())
+
+                    if (select.val() != 0) {
+                        $("#UserID").val(select.val())
+
+                        $("#TrueName").val(select.text())
                     }
-                }
-            });
-            //form.on('select(test)', function (data) {
 
-            //    $("#TypeID").val(data.value)
-
-            //});
-        });
-    </script>
-    <script type="text/javascript">
-
-        $("#AddButton").click(function () {
-
-            var load = layer.load();
-            //异步提交
-            $('#proForm').ajaxSubmit(function (data) {
-                layer.close(load);
-                if (data.r) {
-                    layer.alert("保存成功", { icon: 6 }, function () {
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                        parent.location.reload();
+                  
+                    var load = layer.load();
+                    //异步提交
+                    $('#proForm').ajaxSubmit(function (data) {
+                        layer.close(load);
+                        if (data.r) {
+                            layer.alert("保存成功", { icon: 6 }, function () {
+                                // 获得frame索引
+                                var index = parent.layer.getFrameIndex(window.name);
+                                //关闭当前frame
+                                parent.layer.close(index);
+                                parent.location.reload();
+                            });
+                        }
+                        else {
+                            layer.alert(data.m);
+                        }
                     });
-                }
-                else {
-                    layer.alert(data.m);
-                }
-            });
-            return false;
+                    return false;
 
-        })
-    </script>
+                })
+            </script>
 </body>
 </html>

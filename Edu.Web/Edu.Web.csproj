@@ -417,6 +417,7 @@
     <Content Include="Views\UserInfo\PassoWordEdit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Equipment\Index.cshtml" />
+    <Content Include="Views\Equipment\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

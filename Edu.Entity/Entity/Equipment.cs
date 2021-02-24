@@ -28,6 +28,12 @@ namespace Edu.Entity
         /// </summary>
         public System.String EqName { get { return this._EqName; } set { this._EqName = value; } }
 
+        private System.String _EqCode;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String EqCode { get { return this._EqCode; } set { this._EqCode = value; } }
+
         private System.String _EqType;
         /// <summary>
         /// 
@@ -69,5 +75,19 @@ namespace Edu.Entity
         /// 
         /// </summary>
         public System.Int32? EqStatus { get { return this._EqStatus; } set { this._EqStatus = value; } }
+
+        private System.String _TrueName;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String TrueName { get { return this._TrueName; } set { this._TrueName = value; } }
+
+        private System.DateTime? _CreatDate;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.DateTime? CreatDate { get { return this._CreatDate; } set { this._CreatDate = value; } }
+
+
     }
 }
