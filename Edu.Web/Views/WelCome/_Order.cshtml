@@ -1,0 +1,40 @@
+﻿
+<div id="a2Days" style="width:100%;height:300px;"></div>
+<script type="text/javascript">
+    $(function () {
+        loadOrder();
+      
+    });
+    function loadOrder() {
+        var myChart2 = echarts.init(document.getElementById('a2Days'));
+        option2 = {
+            title: {
+                text: '订单数量（最近两个月）'
+            },
+            tooltip: {},
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: []
+            }]
+        };
+        myChart2.setOption(option2);
+        $.get("@Url.Action("GetOrders")", { }, function (data) {
+            myChart2.setOption({
+                xAxis: {
+                    data: data.categories
+                },
+                series: [{
+                    name: '订单数量',
+                    data: data.data,
+                    type: 'line'
+                }]
+            });
+         });
+    }
+
+</script>

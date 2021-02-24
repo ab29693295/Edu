@@ -1,0 +1,40 @@
+﻿
+<div id="a4Days" style="width:100%;height:300px;"></div>
+<script type="text/javascript">
+    $(function () {
+        loadUser();
+      
+    });
+    function loadUser() {
+        var myChart2 = echarts.init(document.getElementById('a4Days'));
+        option2 = {
+            title: {
+                text: '会员数量（最近两个月）'
+            },
+            tooltip: {},
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: []
+            }]
+        };
+        myChart2.setOption(option2);
+        $.get("@Url.Action("GetUsers")", { }, function (data) {
+            myChart2.setOption({
+                xAxis: {
+                    data: data.categories
+                },
+                series: [{
+                    name: '会员数量',
+                    data: data.data,
+                    type: 'line'
+                }]
+            });
+         });
+    }
+
+</script>

@@ -1,0 +1,40 @@
+﻿
+<div id="a3Days" style="width:100%;height:300px;"></div>
+<script type="text/javascript">
+    $(function () {
+        loadEquip();
+      
+    });
+    function loadEquip() {
+        var myChart2 = echarts.init(document.getElementById('a3Days'));
+        option2 = {
+            title: {
+                text: '设备数量（最近两个月）'
+            },
+            tooltip: {},
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: []
+            }]
+        };
+        myChart2.setOption(option2);
+        $.get("@Url.Action("GetEquip")", { }, function (data) {
+            myChart2.setOption({
+                xAxis: {
+                    data: data.categories
+                },
+                series: [{
+                    name: '设备数量',
+                    data: data.data,
+                    type: 'line'
+                }]
+            });
+         });
+    }
+
+</script>

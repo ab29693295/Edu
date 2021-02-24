@@ -1,0 +1,40 @@
+﻿
+<div id="a2Days" style="width:100%;height:300px;"></div>
+<script type="text/javascript">
+    $(function () {
+        loadTime();
+      
+    });
+    function loadTime() {
+        var myChart2 = echarts.init(document.getElementById('a2Days'));
+        option2 = {
+            title: {
+                text: '访问次数（按天统计）'
+            },
+            tooltip: {},
+            xAxis: {
+                data: []
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: []
+            }]
+        };
+        myChart2.setOption(option2);
+        $.get("@Url.Action("GetTimes")", { }, function (data) {
+            myChart2.setOption({
+                xAxis: {
+                    data: data.categories
+                },
+                series: [{
+                    name: '访问次数',
+                    data: data.data,
+                    type: 'line'
+                }]
+            });
+         });
+    }
+
+</script>
