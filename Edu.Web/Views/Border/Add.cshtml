@@ -1,0 +1,163 @@
+﻿@model Edu.Entity.Equipment
+@{
+    Layout = null;
+
+    List<Edu.Entity.UserInfo> UserList = ViewBag.UserList as List<Edu.Entity.UserInfo>;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>四格光影</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/Content/X-Admin/css/font.css">
+    <link rel="stylesheet" href="~/Content/X-Admin/css/xadmin.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.form.js"></script>
+    <script src="~/Content/X-Admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="~/Content/X-Admin/js/xadmin.js"></script>
+    <style type="text/css">
+        .layui-input {
+            width:300px;
+        }
+        .layui-form-item .layui-input-inline {
+            float: left;
+            width: 300px;
+            margin-right: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="x-body">
+        @using (Html.BeginForm("Mody", "Equipment", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
+        {
+            @Html.HiddenFor(p => p.ID)
+            @Html.HiddenFor(p => p.UserID)
+            @Html.HiddenFor(p => p.TrueName)
+
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>设备编号：
+                </label>
+                <div class="layui-input-inline">
+                    @Html.TextBoxFor(p => p.EqCode, new { @class = "layui-input", autocomplete = "off", placeholder = "设备编号" })
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>设备名称：
+                </label>
+                <div class="layui-input-inline">
+                    @Html.TextBoxFor(p => p.EqName, new { @class = "layui-input", autocomplete = "off", placeholder = "设备名称" })
+
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>设备类型：
+                </label>
+                <div class="layui-input-inline">
+                    @Html.TextBoxFor(p => p.EqType, new { @class = "layui-input", autocomplete = "off", placeholder = "设备类型" })
+
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户:</label>
+                    <div class="layui-input-inline">
+                        <select name="modules" id="UserSelect" lay-verify="required" lay-search="">
+                            <option value="0">直接选择或搜索选择</option>
+                            @foreach (var user in UserList)
+                            {
+                                <option value="@(user.ID)">@(user.TrueName)</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>设备地址：
+                </label>
+                <div class="layui-input-inline">
+                    @Html.TextBoxFor(p => p.Address, new { @class = "layui-input", autocomplete = "off", style = "width: 500px;", placeholder = "设备地址" })
+
+                </div>
+            </div>
+        }
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <button class="layui-btn" lay-filter="add" id="AddButton">
+                保存
+            </button>
+        </div>
+    </div>
+
+
+            <script>
+                layui.use(['form', 'layer'], function () {
+                    $ = layui.jquery;
+                    var form = layui.form
+                        , layer = layui.layer;
+
+
+                    //form.on('select(test)', function (data) {
+
+                    //    $("#TypeID").val(data.value)
+
+                    //});
+                });
+            </script>
+            <script type="text/javascript">
+                $(function () {
+                    $("#EqCode").val('@(ViewBag.EqCode)');
+                })
+
+                $("#AddButton").click(function () {
+
+                    var select = $("#UserSelect option:selected");
+
+                    alert(select.val())
+                    alert(select.text())
+
+                    if (select.val() != 0) {
+                        $("#UserID").val(select.val())
+
+                        $("#TrueName").val(select.text())
+                    }
+
+                  
+                    var load = layer.load();
+                    //异步提交
+                    $('#proForm').ajaxSubmit(function (data) {
+                        layer.close(load);
+                        if (data.r) {
+                            layer.alert("保存成功", { icon: 6 }, function () {
+                                // 获得frame索引
+                                var index = parent.layer.getFrameIndex(window.name);
+                                //关闭当前frame
+                                parent.layer.close(index);
+                                parent.location.reload();
+                            });
+                        }
+                        else {
+                            layer.alert(data.m);
+                        }
+                    });
+                    return false;
+
+                })
+            </script>
+</body>
+</html>
