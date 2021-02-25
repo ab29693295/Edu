@@ -119,7 +119,7 @@ namespace Edu.Web.Controllers
             if (old == null)
             {
                 equipment.EqRunStatus = 1;
-                equipment.EqStatus = 1;
+                equipment.EqStatus = 0;
                 equipment.CreatDate = DateTime.Now;
                 unitOfWork.DEquipment.Insert(equipment);
 

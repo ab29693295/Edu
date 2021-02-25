@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\EquipAPIController.cs" />
     <Compile Include="API\OdPhotoController.cs" />
     <Compile Include="API\OrderController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

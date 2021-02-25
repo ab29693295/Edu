@@ -88,6 +88,13 @@ namespace Edu.Entity
         /// </summary>
         public System.DateTime? CreatDate { get { return this._CreatDate; } set { this._CreatDate = value; } }
 
-       
+        private System.DateTime? _LoginDate;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.DateTime? LoginDate { get { return this._LoginDate; } set { this._LoginDate = value; } }
+
+
+        
     }
 }
