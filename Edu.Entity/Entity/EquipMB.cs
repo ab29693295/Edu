@@ -82,5 +82,17 @@
         /// 自动雀斑
         /// </summary>
         public System.Int32? BeaZDQB { get { return this._BeaZDQB; } set { this._BeaZDQB = value; } }
+
+        private System.String _EqCode;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String EqCode { get { return this._EqCode; } set { this._EqCode = value; } }
+
+        private System.Int32? _BeaSL;
+        /// <summary>
+        /// 瘦脸
+        /// </summary>
+        public System.Int32? BeaSL { get { return this._BeaSL; } set { this._BeaSL = value; } }
     }
 }

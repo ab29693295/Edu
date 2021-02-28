@@ -36,6 +36,19 @@ namespace Edu.Service
                 return _DLogInfo;
             }
         }
+        private DEquipMeal _DEquipMeal;
+
+        public DEquipMeal DEquipMeal
+        {
+            get
+            {
+                if (this._DEquipMeal == null)
+                {
+                    this._DEquipMeal = new DEquipMeal(context);
+                }
+                return _DEquipMeal;
+            }
+        }
 
         private DEquipMB _DEquipMB;
 

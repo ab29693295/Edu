@@ -75,6 +75,7 @@
       <DependentUpon>EntityCodeScript.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\Repositories\EduContextRepository.cs" />
+    <Compile Include="Repository\Repositories\EquipMealRepository.cs" />
     <Compile Include="Repository\Repositories\EquipMBRepository.cs" />
     <Compile Include="Repository\Repositories\PhotoBorderRepository.cs" />
     <Compile Include="Repository\Repositories\LogInfoRepository.cs" />
