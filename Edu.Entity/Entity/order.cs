@@ -87,5 +87,13 @@ namespace Edu.Entity
         /// 
         /// </summary>
         public System.String EquipID { get { return this._EquipID; } set { this._EquipID = value; } }
+
+        private System.String _out_trade_no;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String out_trade_no { get { return this._out_trade_no; } set { this._out_trade_no = value; } }
+
+        
     }
 }

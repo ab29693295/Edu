@@ -94,11 +94,36 @@ namespace Edu.Web.API
             }
 
         }
+        /// <summary>
+        /// 获取订单信息
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         [HttpGet]
         public IHttpActionResult GetOrder(int ID)
         {
             var order = unitOfWork.DOrder.GetByID(ID);
             return Json(new { R = true,Data=order });
+        }
+        /// <summary>
+        /// 获取订单支付状态
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult GetOrderPayStatus(int ID)
+        {
+
+            var order = unitOfWork.DOrder.GetByID(ID);
+            if (order != null)
+            {
+                return Json(new { R = true, PayStatus = order.PayStatus });
+            }
+            else
+            {
+                return Json(new { R = true, PayStatus = 0 });
+            }
+          
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using WxPayAPI.lib;
 
-namespace WxPayAPI
+
+namespace Edu.Web.Pay
 {
     /**
     * 	配置账号信息

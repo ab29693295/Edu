@@ -1,7 +1,7 @@
 ﻿
 using System.Configuration;
 
-namespace WxPayAPI.lib
+namespace Edu.Web.Pay
 {
     public class DemoConfig:IConfig
     {

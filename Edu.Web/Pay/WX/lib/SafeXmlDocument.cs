@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml;
-namespace WxPayAPI.lib
+namespace Edu.Web.Pay
 {
     public class SafeXmlDocument:XmlDocument
     {

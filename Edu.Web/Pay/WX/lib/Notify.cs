@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
 
-namespace WxPayAPI
+namespace Edu.Web.Pay
 {
     /// <summary>
     /// 回调处理基类

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace WxPayAPI.lib
+namespace Edu.Web.Pay
 {
 public interface IConfig
     {

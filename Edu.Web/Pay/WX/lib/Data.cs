@@ -4,13 +4,12 @@ using System.Web;
 using System.Xml;
 using System.Security.Cryptography;
 using System.Text;
-using WxPayAPI.lib;
 using System.Linq;
 using System.Web.Security;
 
 
 
-namespace WxPayAPI
+namespace Edu.Web.Pay
 {
 
 

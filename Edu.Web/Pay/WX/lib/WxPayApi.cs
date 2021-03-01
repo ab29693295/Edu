@@ -4,12 +4,11 @@ using System.Web;
 using System.Net;
 using System.IO;
 using System.Text;
-using Cicada;
-using Cicada.Log;
 
-using WxPayAPI.lib;
 
-namespace WxPayAPI
+
+
+namespace Edu.Web.Pay
 {
     public class WxPayApi
     {
@@ -17,7 +16,7 @@ namespace WxPayAPI
         /// <summary>
         /// 日志
         /// </summary>
-        private readonly static ILog log = CicadaFacade.CreateLog<WxPayApi>();
+       
         /**
         * 提交被扫支付API
         * 收银员使用扫码设备读取微信用户刷卡授权码以后，二维码或条码信息传送至商户收银台，
@@ -60,10 +59,9 @@ namespace WxPayAPI
 
             var start = DateTime.Now;//请求开始时间
 
-            log.Debug("WxPayApi", "MicroPay request : " + xml);
+           
             string response = HttpService.Post(xml, url, false, timeOut);//调用HTTP通信接口以提交数据到API
-            log.Debug("WxPayApi", "MicroPay response : " + response);
-
+           
             var end = DateTime.Now;
             int timeCost = (int)((end - start).TotalMilliseconds);//获得接口耗时
 
@@ -121,9 +119,9 @@ namespace WxPayAPI
 
             var start = DateTime.Now;
 
-            log.Info("WxPayApi - OrderQuery request : " + xml);
+         
             string response = HttpService.Post(xml, url, false, timeOut);//调用HTTP通信接口提交数据
-            log.Info("WxPayApi - OrderQuery response : " + response);
+          
 
             var end = DateTime.Now;
             int timeCost = (int)((end - start).TotalMilliseconds);//获得接口耗时
@@ -164,11 +162,11 @@ namespace WxPayAPI
 
             var start = DateTime.Now;//请求开始时间
 
-            log.Debug("WxPayApi", "Reverse request : " + xml);
+            
 
             string response = HttpService.Post(xml, url, true, timeOut);
 
-            log.Debug("WxPayApi", "Reverse response : " + response);
+           
 
             var end = DateTime.Now;
             int timeCost = (int)((end - start).TotalMilliseconds);
@@ -224,9 +222,9 @@ namespace WxPayAPI
             string xml = inputObj.ToXml();
             var start = DateTime.Now;
 
-            log.Debug("WxPayApi", "Refund request : " + xml);
+           
             string response = HttpService.Post(xml, url, true, timeOut);//调用HTTP通信接口提交数据到API
-            log.Debug("WxPayApi", "Refund response : " + response);
+           
 
             var end = DateTime.Now;
             int timeCost = (int)((end - start).TotalMilliseconds);//获得接口耗时
@@ -453,7 +451,7 @@ namespace WxPayAPI
             xml = inputObj.ToXml();
             ------------------------------------------测试结束*/
 
-            log.Info(inputObj.ToPrintStr());
+           
             string response = HttpService.Post(xml, url, false, timeOut);
 
             var end = DateTime.Now;
@@ -461,7 +459,7 @@ namespace WxPayAPI
 
             WxPayData result = new WxPayData();
             result.FromXml(response);
-            log.Info("收到微信统一下单接口回复："+result.ToPrintStr());
+         
 
             ReportCostTime(url, timeCost, result);//测速上报
 
@@ -626,11 +624,11 @@ namespace WxPayAPI
             inputObj.SetValue("sign", inputObj.MakeSign());//签名
 		    string xml = inputObj.ToXml();
 
-            log.Info("WxPayApi", "Report request : " + xml);
+         
 
             string response = HttpService.Post(xml, url, false, timeOut);
 
-            log.Info("WxPayApi", "Report response : " + response);
+         
 
             WxPayData result = new WxPayData();
             result.FromXml(response);

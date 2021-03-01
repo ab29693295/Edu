@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace WxPayAPI
+namespace Edu.Web.Pay
 {
     public class WxPayException : Exception 
     {
