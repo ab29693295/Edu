@@ -21,15 +21,15 @@ namespace Edu.Web.API
         {
             try
             {
-                var equip = unitOfWork.DEquipMeal.Get(p => p.EqCode == EqCode);
+                var mealData = unitOfWork.DEquipMeal.Get(p => p.EqCode == EqCode).Take(2);
 
-                if (equip != null)
+                if (mealData != null)
                 {
-                    return Json(new { R = true, Data = equip });
+                    return Json(new { R = true, Data = mealData });
                 }
                 else
                 {
-                    return Json(new { R = false, m = "设备不存在！", Data = "" });
+                    return Json(new { R = false, m = "套餐不存在！", Data = "" });
                 }
 
             }
