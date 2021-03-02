@@ -1,4 +1,5 @@
 ﻿using Edu.Service;
+using Edu.Tools;
 using Edu.Web.Pay;
 using Newtonsoft.Json;
 using System;
@@ -28,6 +29,8 @@ namespace Edu.Web.Controllers
 
             string xmlData = getPostStr();//获取请求数据
 
+            Edu.Tools.LogHelper.Info("微信回调数据" + xmlData);
+
             //转换数据格式并验证签名
             WxPayData data = new WxPayData();
             try
@@ -44,6 +47,7 @@ namespace Edu.Web.Controllers
 
             }
 
+            Edu.Tools.LogHelper.Info("result_code:"+ data.IsSet("result_code").ToString());
             //只有return_code为SUCCESS时才返回result_code
             if (data.IsSet("result_code"))
             {
@@ -51,22 +55,37 @@ namespace Edu.Web.Controllers
                 string out_trade_no = data.GetValue("out_trade_no").ToString();
                 string result_code = data.GetValue("result_code").ToString();
 
-                var order = unitOfWork.DOrder.Get(p => p.out_trade_no == out_trade_no).FirstOrDefault();
-              
 
-              
+                Edu.Tools.LogHelper.Info("out_trade_no:" + data.GetValue("out_trade_no").ToString());
+
+                var order = unitOfWork.DOrder.Get(p => p.out_trade_no == out_trade_no).FirstOrDefault();
+
+
+                Edu.Tools.LogHelper.Info("result_code:" + data.GetValue("result_code").ToString());
                 if (result_code == "SUCCESS")
                 {
+                    Edu.Tools.LogHelper.Info("order：" + order.ID.ToString());
                     order.PayStatus = 1;
-                    
+                  
                 }
                 else
                 {
+                    Edu.Tools.LogHelper.Info("order：" + order.ID.ToString());
                     order.PayStatus = 2;
-                    Edu.Tools.LogHelper.Info("支付失败：" + data.GetValue("err_code_des").ToString());
+                    
                 }
                 unitOfWork.DOrder.Update(order);
-                unitOfWork.Save();
+                OperationResult result= unitOfWork.Save();
+
+                if (result.ResultType == OperationResultType.Success)
+                {
+                    Edu.Tools.LogHelper.Info("保存成功：" + order.ID.ToString());
+                }
+                else
+                {
+                    Edu.Tools.LogHelper.Info("保存失败：" + order.ID.ToString());
+                }
+
 
 
             }

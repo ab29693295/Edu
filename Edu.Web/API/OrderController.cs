@@ -60,17 +60,17 @@ namespace Edu.Web.API
                         }
                         if (child.Name == "Status")//订单状态
                         {
-                            _order.OrderID = child.InnerText;
+                            _order.EquipID = child.InnerText;
                         }
                         if (child.Name == "EqID")//设备ID
                         {
-                            _order.OrderID = child.InnerText;
+                            _order.EqID = Convert.ToInt32(child.InnerText);
                         }
-                        if (child.Name == "EqUserID")//设备用户ID
+                       
+                        if (child.Name == "out_trade_no")
                         {
-                            _order.OrderID = child.InnerText;
+                            _order.out_trade_no = child.InnerText;
                         }
-
                     }
 
                 }

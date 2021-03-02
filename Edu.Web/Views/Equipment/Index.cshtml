@@ -26,7 +26,7 @@
     <div class="x-nav">
         <span class="layui-breadcrumb">
             <a href="">首页</a>
-            <a href="">会员管理</a>
+            <a href="">设备管理</a>
             <a>
                 <cite>设备列表</cite>
             </a>
@@ -97,16 +97,21 @@
             <i class="layui-icon">&#xe601;</i>
         </a>*@
                                 <a title="编辑" onclick="x_admin_show('编辑','/Equipment/Add?id=@(item.ID)',800,600)" href="javascript:;">
-                                    <i class="layui-icon">&#xe642;</i>
+                                    <i class="icon iconfont">&#xe69e;</i>
                                 </a>
 
                                 <a title="设置美颜" onclick="x_admin_show('设置美颜','/Equipment/EquipMB?id=@(item.ID)',800,600)" href="javascript:;">
-                                    <i class="icon iconfont">&#xe6ae;</i>                                   
-                                    
+                                    <i class="icon iconfont">&#xe6ae;</i>
+
+                                </a>
+
+                                <a title="设置套餐" onclick="x_admin_show('设置套餐','/EquipMeal/Index?EqID=@(item.ID)',800,600)" href="javascript:;">
+                                    <i class="icon iconfont">&#xe6e4;</i>
+
                                 </a>
 
                                 <a title="删除" onclick="member_del(this,'@(item.ID)')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i>
+                                    <i class="icon iconfont">&#xe69d;</i>
                                 </a>
                             </td>
                         </tr>

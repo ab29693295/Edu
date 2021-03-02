@@ -137,6 +137,8 @@ namespace Edu.Web.Controllers
             }
             if (result.ResultType == OperationResultType.Success)
             {
+                EuipmentService.AddEquipMBMeal(equipment);
+
                 return Json(new { r = true }, JsonRequestBehavior.AllowGet);
             }
             else
