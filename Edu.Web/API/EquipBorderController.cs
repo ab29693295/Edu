@@ -21,21 +21,15 @@ namespace Edu.Web.API
         {
             try
             {
-                var equip = unitOfWork.DPhotoBorder.Get(p => p.EqCode == EqCode).FirstOrDefault();
-                if (equip != null)
+                var BorderList = unitOfWork.DPhotoBorder.Get(p => p.EqCode == EqCode).FirstOrDefault();
+                if (BorderList != null)
                 {
-                    equip.EqStatus = 1;
-
-                    unitOfWork.DEquipment.Update(equip);
-
-                    unitOfWork.Save();
-
-
-                    return Json(new { R = true });
+                  
+                    return Json(new { R = true, Data = BorderList, m = "获取成功" });
                 }
                 else
                 {
-                    return Json(new { R = false, m = "设备不存在！" });
+                    return Json(new { R = false, m = "获取失败" });
                 }
 
             }

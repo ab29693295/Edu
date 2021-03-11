@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\EquipAPIController.cs" />
+    <Compile Include="API\EquipBorderController.cs" />
     <Compile Include="API\EquipMBController.cs" />
     <Compile Include="API\OdPhotoController.cs" />
     <Compile Include="API\OrderController.cs" />
