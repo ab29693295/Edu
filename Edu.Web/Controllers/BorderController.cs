@@ -61,7 +61,7 @@ namespace Edu.Web.Controllers
                     photoB.EqID = EqID;
                     photoB.CreatDate = DateTime.Now;
 
-                    photoB.BorderPath = ConfigHelper.GetConfigString("HttpUlr") + "/File/Image/Border_"+i.ToString()+".png" ;
+                    photoB.BorderPath = ConfigHelper.GetConfigString("HttpUlr") + "/File/Image/Border/Border-" + i.ToString()+".png" ;
 
                     unitOfWork.DPhotoBorder.Insert(photoB);
                     unitOfWork.Save();
