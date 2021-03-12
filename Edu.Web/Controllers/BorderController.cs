@@ -14,11 +14,16 @@ namespace Edu.Web.Controllers
     {
         // GET: Border
 
-        public ActionResult Index(string sn = "", int pageNo = 1)
+        public ActionResult Index(int EqID=0, string sn = "", int pageNo = 1)
         {
             Paging paging = new Paging();
             paging.PageNumber = pageNo;
             var query = unitOfWork.DPhotoBorder.GetIQueryable(p => p.BorderName.Contains(sn), q => q.OrderBy(p => p.ID));
+            if (EqID != 0)
+            {
+                AddBorder(EqID);
+                query = query.Where(p => p.EqID==EqID);
+            }
 
             paging.Amount = query.Count();
             paging.EntityList = query.Skip(paging.PageSiz * paging.PageNumber).Take(paging.PageSiz).ToList();
@@ -30,38 +35,77 @@ namespace Edu.Web.Controllers
             ViewBag.Amount = query.Count();
             ViewBag.PageNo = pageNo;//页码
             ViewBag.PageCount = paging.PageCount;//总页数
+
+
             return View(paging.EntityList);
+        }
+        /// <summary>
+        /// 添加边框
+        /// </summary>
+        public void AddBorder(int EqID)
+        {
+
+
+            var EqBorder = unitOfWork.DPhotoBorder.Get(p=>p.EqID==EqID);
+            if (EqBorder == null || EqBorder.Count() <6)
+            {
+                unitOfWork.DPhotoBorder.Delete(p => p.EqID == EqID);
+                unitOfWork.Save();
+
+                for (int i =1; i < 7; i++)
+                {
+                    PhotoBorder photoB = new PhotoBorder();
+
+                    photoB.BorderName = "边框"+i.ToString();
+                    photoB.Status = 1;
+                    photoB.EqID = EqID;
+                    photoB.CreatDate = DateTime.Now;
+
+                    photoB.BorderPath = ConfigHelper.GetConfigString("HttpUlr") + "/File/Image/Border_"+i.ToString()+".png" ;
+
+                    unitOfWork.DPhotoBorder.Insert(photoB);
+                    unitOfWork.Save();
+                }
+            }
         }
 
         /// <summary>
         /// 上传图片
         /// </summary>
         /// <returns></returns>
-        public ActionResult Mody()
+        public ActionResult Mody(PhotoBorder sImage)
         {
             try
             {
+             
+                var old = unitOfWork.DPhotoBorder.GetByID(sImage.ID);
 
-                //JSONHelper.ObjectToJson(postContent);
-                //AddLive aLive= JSONHelper.Deserialize<AddLive>(postContent);
 
                 string ImageNames = Request.Form["ImageNames"].ToString();//
                 string Des = Request.Form["Des"].ToString();
                 string BorderName = Request.Form["BorderName"].ToString();
 
-
-
-
-
-                PhotoBorder sImage = new PhotoBorder();
                 sImage.BorderName = BorderName;
                 sImage.Des = Des;
                 sImage.Status = 1;
                 sImage.CreatDate = DateTime.Now;
-                sImage.BorderPath ="http://www.zhuimengnanhai.com:666"+ "/File/Image/" + ImageNames;
+                sImage.BorderPath = ConfigHelper.GetConfigString("HttpUlr") + "/File/Image/" + ImageNames;
+                if (old == null)
+                {
+                    unitOfWork.DPhotoBorder.Insert(sImage);
+                    unitOfWork.Save();
 
-                unitOfWork.DPhotoBorder.Insert(sImage);
-                unitOfWork.Save();
+                }
+                else
+                {
+                    unitOfWork.DPhotoBorder.Update(sImage);
+                    unitOfWork.Save();
+                }
+
+                //JSONHelper.ObjectToJson(postContent);
+                //AddLive aLive= JSONHelper.Deserialize<AddLive>(postContent);
+
+
 
 
                 return Json(new { r = true });
@@ -110,9 +154,10 @@ namespace Edu.Web.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Add(int? id)
+        public ActionResult Add(int? id,int? EqID)
         {
             var equipMent = unitOfWork.DPhotoBorder.GetByID(id);
+            ViewBag.EqID = EqID;
 
             return View(equipMent);
         }
