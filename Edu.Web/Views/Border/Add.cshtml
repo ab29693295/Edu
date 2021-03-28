@@ -38,7 +38,7 @@
         @using (Html.BeginForm("Mody", "Border", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
         {
             @Html.HiddenFor(p => p.ID)
-
+            @Html.HiddenFor(p => p.EqID)
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
@@ -128,14 +128,15 @@
             <script type="text/javascript">
                 $(function () {
                     $("#EqCode").val('@(ViewBag.EqCode)');
+
+                    $("#EqID").val('@(ViewBag.EqID)');
                 })
 
                 $("#AddButton").click(function () {
 
                     var select = $("#UserSelect option:selected");
 
-                    alert(select.val())
-                    alert(select.text())
+                  
 
                     if (select.val() != 0) {
                         $("#UserID").val(select.val())

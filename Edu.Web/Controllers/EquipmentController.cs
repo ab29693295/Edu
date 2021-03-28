@@ -22,9 +22,6 @@ namespace Edu.Web.Controllers
             paging.Amount = query.Count();
             paging.EntityList = query.Skip(paging.PageSiz * paging.PageNumber).Take(paging.PageSiz).ToList();
 
-
-
-
             ViewBag.sn = sn;
             ViewBag.Amount = query.Count();
             ViewBag.PageNo = pageNo;//页码

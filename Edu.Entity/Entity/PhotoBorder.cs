@@ -54,5 +54,17 @@ namespace Edu.Entity
         /// 描述
         /// </summary>
         public System.String Des { get { return this._Des; } set { this._Des = value; } }
+
+        private System.String _EqCode;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String EqCode { get { return this._EqCode; } set { this._EqCode = value; } }
+
+        private System.Int32? _EqID;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.Int32? EqID { get { return this._EqID; } set { this._EqID = value; } }
     }
 }
