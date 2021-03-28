@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+
+    List<string> ImageList = ViewBag.ListPhoto as List<string>;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @if (ImageList != null && ImageList.Count() > 0)
+        {
+            foreach (var item in ImageList)
+            {
+                <img src="@(item)" width="200" height="400" />
+            }
+
+        }
+
+    </div>
+</body>
+</html>
