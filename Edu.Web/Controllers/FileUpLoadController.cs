@@ -59,5 +59,40 @@ namespace Edu.Web.Controllers
             }
           
         }
+
+        [ValidateInput(false)]
+        public JsonResult AddOrderFilter(int OrderID)
+        {
+            if (Request.Files.Count > 0)
+            {
+
+                string ImageName = CombHelper.GenerateOrderNumber() + ".png";
+                //传过来的图片
+                var file = Request.Files[0];
+                string fPath = "/File/" + OrderID.ToString()+ "/Filter/";//+"/" + ImageName
+                //保存到本地或服务器
+
+                if (!Directory.Exists(System.Web.HttpContext.Current.Server.MapPath(fPath)))
+                {
+                    FileHelper.CreateDirectory(System.Web.HttpContext.Current.Server.MapPath(fPath));
+                }
+                var uploadsPath = Path.Combine(fPath, CombHelper.GenerateNumber());
+                string extraName = file.FileName.Substring(file.FileName.LastIndexOf(".") + 1);
+                string fName = file.FileName;
+                string filepath = uploadsPath + "." + extraName;
+                file.SaveAs(System.Web.HttpContext.Current.Server.MapPath(filepath));
+
+            
+                return Json(new { R = true }, JsonRequestBehavior.AllowGet);
+              
+
+
+            }
+            else
+            {
+                return Json(new { R = false, ID = 0 }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
     }
 }

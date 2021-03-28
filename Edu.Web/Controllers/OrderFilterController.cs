@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Edu.Tools;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Edu.Web.Controllers
         // GET: OrderFilter
         public ActionResult Index(int oID)
         {
+            List<string> ImageList = new List<string>();
+
             string fPath = "/File/" + oID.ToString() + "/Filter/";//+"/" + ImageName
                                                                   //保存到本地或服务器
 
@@ -29,12 +32,14 @@ namespace Edu.Web.Controllers
                     Console.WriteLine(y);
                     if (s == ".png")
                     {
-                        System.IO.File.Copy(fi.FullName, x + @"\oo" + fi.Name); //在原文件名前加上OO
-                        System.IO.File.Delete(fi.FullName);
+                        string filePath = ConfigHelper.GetConfigString("HttpUlr")+ "/File/" + oID.ToString() + "/Filter/" + fi.Name;
+                        ImageList.Add(filePath);
+                     
                     }
                 }
             }
 
+            ViewBag.ListPhoto = ImageList;
             return View();
         }
     }
