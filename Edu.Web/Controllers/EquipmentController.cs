@@ -18,7 +18,11 @@ namespace Edu.Web.Controllers
             Paging paging = new Paging();
             paging.PageNumber = pageNo;
             var query = unitOfWork.DEquipment.GetIQueryable(p => p.EqName.Contains(sn) || p.Address.Contains(sn), q => q.OrderBy(p => p.ID));
-
+            if (Edu.Service.LoginUserService.RoleID != 1)
+            {
+                int userID = Edu.Service.LoginUserService.UserID;
+                query = query.Where(p => p.UserID == userID);
+            }
             paging.Amount = query.Count();
             paging.EntityList = query.Skip(paging.PageSiz * paging.PageNumber).Take(paging.PageSiz).ToList();
 

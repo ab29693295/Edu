@@ -1,5 +1,6 @@
 ﻿using Edu.Service;
 using Edu.Tools;
+using Edu.Web.Pay.WX;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace Edu.Web.Controllers
             {
                 query = query.Where(p => p.PayStatus ==payStatus);
             }
+            if (Edu.Service.LoginUserService.RoleID != 1)
+            {
+                int userID = Edu.Service.LoginUserService.UserID;
+                query = query.Where(p=>p.EqUserID==userID);
+            }
 
             paging.Amount = query.Count();
             paging.EntityList = query.Skip(paging.PageSiz * paging.PageNumber).Take(paging.PageSiz).ToList();
@@ -39,6 +45,34 @@ namespace Edu.Web.Controllers
             ViewBag.PageNo = pageNo;//页码
             ViewBag.PageCount = paging.PageCount;//总页数
             return View(paging.EntityList);
+        }
+
+
+        /// <summary>
+        /// 订单退款
+        /// </summary>
+        /// <param name="transaction_id"></param>
+        /// <param name="out_trade_no"></param>
+        /// <param name="price"></param>
+        /// <returns></returns>
+        public ActionResult Order_Refund(int ID,string transaction_id,string out_trade_no,double  price)
+        {
+            var order = unitOfWork.DOrder.GetByID(ID);
+
+            string resultRefund = Refund.Run(transaction_id, out_trade_no, price.ToString(), price.ToString());
+            order.PayStatus = 3;
+
+            unitOfWork.DOrder.Update(order);
+
+            OperationResult result = unitOfWork.Save();
+            if (result.ResultType == OperationResultType.Success)
+            {
+                return Json(new { r = true, m = "" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { r = false, m = result.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

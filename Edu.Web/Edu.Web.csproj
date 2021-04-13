@@ -192,6 +192,7 @@
     <Compile Include="Pay\WX\lib\RandomGenerator.cs" />
     <Compile Include="Pay\WX\lib\SafeXmlDocument.cs" />
     <Compile Include="Pay\WX\lib\WxPayApi.cs" />
+    <Compile Include="Pay\WX\Refund.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -60,26 +60,29 @@ namespace Edu.Service
                 }
             }
         }
-        public static RoleInfo Role
+        public static int RoleID
         {
             get
             {
                 if (UserID == 0)
                 {
-                    return null;
-                }
-                var old = Edu.Tools.CacheHelper.GetCache("UserRole" + UserID);
-                if (old == null)
-                {
-                    RoleInfo userrole;
-                    userrole = new UnitOfWork().DRoleInfo.GetByID(User.RoleID);
-                    CacheHelper.SetCache("UserRole" + UserID, userrole);
-                    return userrole;
+                    return 0;
                 }
                 else
                 {
-                    return old as RoleInfo;
+                    UserInfo user = new UnitOfWork().DUserInfo.GetByID(UserID);
+                    if (user != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        int roleID = Convert.ToInt32(user.RoleID);
+                        return roleID;
+                    }
+                 
                 }
+               
             }
         }
     }

@@ -74,6 +74,14 @@ namespace Edu.Web.API
                     }
 
                 }
+                var equp = unitOfWork.DEquipment.GetByID(_order.EqID);
+                if (equp != null)
+                {
+
+                }
+
+
+
                 _order.CreatDate = DateTime.Now;
                 unitOfWork.DOrder.Insert(_order);
                 var isSave = unitOfWork.SaveRMsg();

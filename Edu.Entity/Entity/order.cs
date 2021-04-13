@@ -94,6 +94,12 @@ namespace Edu.Entity
         /// </summary>
         public System.String out_trade_no { get { return this._out_trade_no; } set { this._out_trade_no = value; } }
 
+        private System.String _transaction_id;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.String transaction_id { get { return this._transaction_id; } set { this._transaction_id = value; } }
         
+
     }
 }

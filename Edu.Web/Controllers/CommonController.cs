@@ -66,7 +66,7 @@ namespace Edu.Web.Controllers
                 {
                     Edu.Tools.LogHelper.Info("order：" + order.ID.ToString());
                     order.PayStatus = 1;
-                  
+                   
                 }
                 else
                 {
@@ -74,6 +74,9 @@ namespace Edu.Web.Controllers
                     order.PayStatus = 2;
                     
                 }
+
+                order.transaction_id = transaction_id;
+
                 unitOfWork.DOrder.Update(order);
                 OperationResult result= unitOfWork.Save();
 

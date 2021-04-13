@@ -120,9 +120,14 @@
                                 @(item.CreatDate)
                             </td>
                             <td class="td-manage">
-                              
-                                <a title="删除" onclick="member_del(this,'@(item.ID)')" href="javascript:;">
+
+                                @*<a title="删除" onclick="member_del(this,'@(item.ID)')" href="javascript:;">
                                     <i class="layui-icon">&#xe640;</i>
+                                </a>*@
+
+                                <a title="退款" onclick="order_Refund('@(item.ID)','@(item.transaction_id)','@(item.out_trade_no)','@(item.Price)')" href="javascript:;">
+                                    <i class="icon iconfont">&#xe6e4;</i>
+
                                 </a>
                             </td>
                         </tr>
@@ -172,7 +177,7 @@
                     layer.msg('已启用!', { icon: 5, time: 1000 });
                 }
 
-                $.post("/UserInfo/UpdateStatus", { rid: id, status: valueData, date: new Date().getTime() }, function (result) {
+                $.post("/Order/UpdateStatus", { rid: id, status: valueData, date: new Date().getTime() }, function (result) {
                     if (result.r) {
                         layer.msg("删除成功");
                         //window.location.reload();
@@ -186,11 +191,31 @@
             });
         }
 
+        /*用户-退款*/
+        function order_Refund(id,transaction_id,out_trade_no,Price) {
+            layer.confirm('确认要退款吗？', function (index) {
+
+                $.post("/Order/Order_Refund", { ID:id,transaction_id: transaction_id, out_trade_no: out_trade_no, Price: Price, date: new Date().getTime() }, function (result) {
+                    if (result.r) {
+
+                        layer.msg("退款成功");
+                        
+                    }
+                    else {
+                        layer.msg("退款失败");
+                    }
+                })
+
+                //发异步删除数据              
+                layer.msg('已退款!', { icon: 1, time: 1000 });
+            });
+        }
+
         /*用户-删除*/
         function member_del(obj, id) {
             layer.confirm('确认要删除吗？', function (index) {
 
-                $.post("/UserInfo/DeleteOp", { rid: id, date: new Date().getTime() }, function (result) {
+                $.post("/Order/DeleteOp", { rid: id, date: new Date().getTime() }, function (result) {
                     if (result.r) {
                         layer.msg("删除成功");
                         //window.location.reload();
@@ -216,7 +241,7 @@
 
 
 
-                $.post("/UserInfo/DeleteAll", { rids: data, date: new Date().getTime() }, function (result) {
+                $.post("/Order/DeleteAll", { rids: data, date: new Date().getTime() }, function (result) {
                     if (result.r) {
                         layer.msg("删除成功");
                         //window.location.reload();
@@ -240,7 +265,7 @@
                 var payStatus = $("#paySelect").val();
                 var sn = $("#ProName").val();
                 //var tID = $("#TypeID").val();
-                window.location.href = "/UserInfo/Index?sn=" + sn + "&startDt=" + startDate + "&endDt=" + endDate + "&payStatus=" + payStatus;
+                window.location.href = "/Order/Index?sn=" + sn + "&startDt=" + startDate + "&endDt=" + endDate + "&payStatus=" + payStatus;
             })
         })
     </script>

@@ -12,7 +12,7 @@ namespace Edu.Entity
   /// <summary>
             /// 
             /// </summary>
-       public UserInfo()
+        public UserInfo()
         {
         }
 
@@ -59,11 +59,11 @@ namespace Edu.Entity
         /// </summary>
         public System.String PassWord { get { return this._PassWord; } set { this._PassWord = value; } }
 
-        private System.String _RoleID;
+        private System.Int32? _RoleID;
         /// <summary>
         /// 
         /// </summary>
-        public System.String RoleID { get { return this._RoleID; } set { this._RoleID = value; } }
+        public System.Int32? RoleID { get { return this._RoleID; } set { this._RoleID = value; } }
 
         private System.String _NickName;
         /// <summary>
