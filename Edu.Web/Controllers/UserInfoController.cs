@@ -18,11 +18,20 @@ namespace Edu.Web.Controllers
             paging.PageNumber = pageNo;
             var query = unitOfWork.DUserInfo.GetIQueryable(p => p.UserName.Contains(sn) || p.TrueName.Contains(sn)&&p.Status==1, q => q.OrderBy(p => p.ID));
 
+           
+            int roleID = Edu.Service.LoginUserService.RoleID;
+            if(roleID==2)
+            {
+                int currentuserID = Edu.Service.LoginUserService.UserID;
+
+                query = query.Where(p => p.Creator == currentuserID);
+            }
+
             paging.Amount = query.Count();
             paging.EntityList = query.Skip(paging.PageSiz * paging.PageNumber).Take(paging.PageSiz).ToList();
 
 
-
+            
 
             ViewBag.sn = sn;
             ViewBag.Amount = query.Count();
@@ -39,6 +48,8 @@ namespace Edu.Web.Controllers
         {
             var user = unitOfWork.DUserInfo.GetByID(id);
 
+           
+
             return View(user);
         }
      
@@ -53,6 +64,7 @@ namespace Edu.Web.Controllers
             {
                 user.Status = 1;
                 user.CreatDate = DateTime.Now;
+                user.Creator = Edu.Service.LoginUserService.UserID;
                 unitOfWork.DUserInfo.Insert(user);
 
                 result = unitOfWork.Save();

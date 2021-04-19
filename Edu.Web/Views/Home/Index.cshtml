@@ -7,7 +7,7 @@
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
     </div>
-    @if (Edu.Service.LoginUserService.RoleID == 1)
+    @if (Edu.Service.LoginUserService.RoleID != 3)
     {
         <ul class="layui-nav left fast-add" lay-filter="">
             <li class="layui-nav-item">

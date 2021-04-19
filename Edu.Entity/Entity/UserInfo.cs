@@ -95,5 +95,11 @@ namespace Edu.Entity
         /// </summary>
         public System.String Address { get { return this._Address; } set { this._Address = value; } }
 
+        private System.Int32? _Creator;
+        /// <summary>
+        /// 
+        /// </summary>
+        public System.Int32? Creator { get { return this._Creator; } set { this._Creator = value; } }
+
     }
 }

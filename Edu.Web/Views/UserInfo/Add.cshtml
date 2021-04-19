@@ -8,6 +8,7 @@
         password = Model.PassWord;
     }
 
+
 }
 
 <!DOCTYPE html>
@@ -43,6 +44,7 @@
         @using (Html.BeginForm("Mody", "UserInfo", FormMethod.Post, new { @id = "proForm", @class = "layui-form", role = "form" }))
         {
             @Html.HiddenFor(p => p.ID)
+            @Html.HiddenFor(p => p.Creator)
 
 
             <div class="layui-form-item">
@@ -101,6 +103,24 @@
                            autocomplete="off" class="layui-input" value="@(password)">
                 </div>
             </div>
+            if (Edu.Service.LoginUserService.RoleID == 1)
+            {
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">角色:</label>
+                        <div class="layui-input-inline">
+                            <select name="modules" id="RoleSelect" lay-verify="required" lay-search="">
+
+                                <option value="2">管理员</option>
+                                <option value="3">普通用户</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
@@ -148,9 +168,21 @@
 
         $("#AddButton").click(function () {
 
+            var select = $("#RoleSelect option:selected");
+
+
+
+            if (select.val() != 0) {
+                $("#Creator").val(select.val())
+
+               
+            }
+
             var load = layer.load();
             //异步提交
             $('#proForm').ajaxSubmit(function (data) {
+
+
                 layer.close(load);
                 if (data.r) {
                     layer.alert("保存成功", { icon: 6 }, function () {
