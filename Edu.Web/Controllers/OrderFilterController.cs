@@ -16,10 +16,9 @@ namespace Edu.Web.Controllers
             List<string> ImageList = new List<string>();
 
             string fPath = "/File/" + oID.ToString() + "/Filter/";//+"/" + ImageName
-                                                                  //保存到本地或服务器
-
-           string FilePath= System.Web.HttpContext.Current.Server.MapPath(fPath);
+            string FilePath= System.Web.HttpContext.Current.Server.MapPath(fPath);
             DirectoryInfo mydir = new DirectoryInfo(FilePath);
+
             foreach (FileSystemInfo fsi in mydir.GetFileSystemInfos())
             {
                 if (fsi is FileInfo)
@@ -30,7 +29,7 @@ namespace Edu.Web.Controllers
                     string s = System.IO.Path.GetExtension(fi.FullName);
                     string y = System.IO.Path.GetFileNameWithoutExtension(fi.FullName);
                     Console.WriteLine(y);
-                    if (s == ".png")
+                    if (s == ".PNG")
                     {
                         string filePath = ConfigHelper.GetConfigString("HttpUlr")+ "/File/" + oID.ToString() + "/Filter/" + fi.Name;
                         ImageList.Add(filePath);

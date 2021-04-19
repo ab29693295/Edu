@@ -71,7 +71,7 @@ namespace Edu.Service
                 else
                 {
                     UserInfo user = new UnitOfWork().DUserInfo.GetByID(UserID);
-                    if (user != null)
+                    if (user == null)
                     {
                         return 0;
                     }
