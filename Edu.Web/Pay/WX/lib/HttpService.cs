@@ -7,6 +7,7 @@ using System.Text;
 using System.Net.Security;    
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
+using Edu.Tools;
 
 namespace Edu.Web.Pay
 {
@@ -65,8 +66,10 @@ namespace Edu.Web.Pay
                 //是否使用证书
                 if (isUseCert)
                 {
-                    string path = HttpContext.Current.Request.PhysicalApplicationPath;
-                    X509Certificate2 cert = new X509Certificate2(path + WxPayConfig.GetConfig().GetSSlCertPath(), WxPayConfig.GetConfig().GetSSlCertPassword());
+
+                    LogHelper.Info("证书路径："+ HttpContext.Current.Request.PhysicalApplicationPath);
+                    string Certpath = HttpContext.Current.Request.PhysicalApplicationPath+ "apiclient_cert.p12";
+                    X509Certificate2 cert = new X509Certificate2(Certpath, "1522987431");
                     request.ClientCertificates.Add(cert);
                     Log.Debug("WxPayApi", "PostXml used cert");
                 }
@@ -86,8 +89,8 @@ namespace Edu.Web.Pay
             }
             catch (System.Threading.ThreadAbortException e)
             {
-                Log.Error("HttpService", "Thread - caught ThreadAbortException - resetting.");
-                Log.Error("Exception message: {0}", e.Message);
+                LogHelper.Error("HttpService"+ "Thread - caught ThreadAbortException - resetting.");
+                LogHelper.Error("Exception message: {0}" + e.Message);
                 System.Threading.Thread.ResetAbort();
             }
             catch (WebException e)
@@ -95,14 +98,14 @@ namespace Edu.Web.Pay
                 Log.Error("HttpService", e.ToString());
                 if (e.Status == WebExceptionStatus.ProtocolError)
                 {
-                    Log.Error("HttpService", "StatusCode : " + ((HttpWebResponse)e.Response).StatusCode);
-                    Log.Error("HttpService", "StatusDescription : " + ((HttpWebResponse)e.Response).StatusDescription);
+                    LogHelper.Error("HttpService" + "StatusCode : " + ((HttpWebResponse)e.Response).StatusCode);
+                    LogHelper.Error("HttpService" + "StatusDescription : " + ((HttpWebResponse)e.Response).StatusDescription);
                 }
                 throw new WxPayException(e.ToString());
             }
             catch (Exception e)
             {
-                Log.Error("HttpService", e.ToString());
+                LogHelper.Error("HttpService" + e.ToString());
                 throw new WxPayException(e.ToString());
             }
             finally

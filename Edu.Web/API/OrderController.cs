@@ -52,7 +52,7 @@ namespace Edu.Web.API
                         }
                         if (child.Name == "Price")//价格
                         {
-                            _order.Price =Convert.ToDouble(child.InnerText);
+                            _order.Price =child.InnerText;
                         }
                         if (child.Name == "PayStatus")//支付状态
                         {
@@ -102,6 +102,30 @@ namespace Edu.Web.API
             }
 
         }
+
+        /// <summary>
+        /// 更改订单打印信息
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IHttpActionResult UpdateOrderPrint(int ID)
+        {
+            var order = unitOfWork.DOrder.GetByID(ID);
+            if (order != null)
+            {
+                order.Status = 2;
+                unitOfWork.DOrder.Update(order);
+                unitOfWork.Save();
+                return Json(new { R = true });
+            }
+            else
+            {
+                return Json(new { R = false });
+            }
+         
+        }
+
         /// <summary>
         /// 获取订单信息
         /// </summary>

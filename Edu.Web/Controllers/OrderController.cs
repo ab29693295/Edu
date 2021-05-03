@@ -58,8 +58,15 @@ namespace Edu.Web.Controllers
         public ActionResult Order_Refund(int ID,string transaction_id,string out_trade_no,double  price)
         {
             var order = unitOfWork.DOrder.GetByID(ID);
-
-            string resultRefund = Refund.Run(transaction_id, out_trade_no, price.ToString(), price.ToString());
+            try
+            {
+                string resultRefund = Refund.Run(transaction_id, out_trade_no, (price * 100).ToString(), (price * 100).ToString());
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Info("退款失败日志：" + ex.ToString());
+            }
+           
             order.PayStatus = 3;
 
             unitOfWork.DOrder.Update(order);

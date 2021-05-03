@@ -39,7 +39,7 @@
         {
             @Html.HiddenFor(p => p.ID)
             @Html.HiddenFor(p => p.EqID)
-            @Html.HiddenFor(p => p.EqCode)
+        
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
@@ -112,9 +112,7 @@
                 });
             </script>
             <script type="text/javascript">
-                $(function () {
-                    $("#EqCode").val('@(ViewBag.EqCode)');
-                })
+              
 
                 $("#AddButton").click(function () {
 

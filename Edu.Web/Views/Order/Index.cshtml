@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/Content/X-Admin/css/font.css">
     <link rel="stylesheet" href="~/Content/X-Admin/css/xadmin.css">
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
+    <script src="~/Scripts/JsCommon.js"></script>
     <script type="text/javascript" src="~/Content/X-Admin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="~/Content/X-Admin/js/xadmin.js"></script>
 
@@ -64,6 +64,7 @@
                     <th>
                         <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
                     </th>
+                    <th>微信订单号</th>
                     <th>订单编号</th>
                     <th>套餐类型</th>
                     <th>费用(元)</th>
@@ -87,50 +88,58 @@
                         {
                             trueName = user.TrueName;
                         }
-                        <tr>
-                            <td>
-                                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='@(item.ID)'><i class="layui-icon">&#xe605;</i></div>
-                            </td>
-                            <td>@(item.OrderID)</td>
-                            <td>@(item.MealName)</td>
-                            <td>@(item.Price)</td>
-                            <td lass="td-status">
-                                @if (item.PayStatus == 1)
-                                {
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已支付</span>
-                                }
-                                else
-                                {
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">未支付</span>
-                                }
-                            </td>
-                            <td lass="td-status">
-                                @if (item.Status == 1)
-                                {
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已完成</span>
-                                }
-                                else
-                                {
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">未完成</span>
-                                }
-                            </td>
-                            <td>@(item.EqID)</td>
-                            <td>@(trueName)</td>
-                            <td>
-                                @(item.CreatDate)
-                            </td>
-                            <td class="td-manage">
+                <tr>
+                    <td>
+                        <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='@(item.ID)'><i class="layui-icon">&#xe605;</i></div>
+                    </td>
+                    <td>@(item.transaction_id)</td>
+                    <td>@(item.OrderID)</td>
+                    <td>@(item.MealName)</td>
+                    <td>@(item.Price)</td>
+                    <td lass="td-status">
+                        @if (item.PayStatus == 1)
+                        {
+                            <span class="layui-btn layui-btn-normal layui-btn-mini">已支付</span>
+                        }
+                        else if (item.PayStatus == 3)
+                        {
+                            <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">已退款</span>
+                        }
+                        else
+                        {
+                            <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">未支付</span>
+                        }
+                    </td>
+                    <td lass="td-status">
+                        @if (item.Status == 2)
+                        {
+                            <span class="layui-btn layui-btn-normal layui-btn-mini">已打印</span>
+                        }
+                        else
+                        {
+                            <span class="layui-btn layui-btn-normal layui-btn-mini layui-btn-disabled">未打印</span>
+                        }
+                    </td>
+                    <td>@(item.EqID)</td>
+                    <td>@(trueName)</td>
+                    <td>
+                        @(item.CreatDate)
+                    </td>
+                    <td class="td-manage">
 
-                                @*<a title="删除" onclick="member_del(this,'@(item.ID)')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i>
-                                </a>*@
+                        @*<a title="删除" onclick="member_del(this,'@(item.ID)')" href="javascript:;">
+            <i class="layui-icon">&#xe640;</i>
+        </a>*@
+                        @if (item.PayStatus != 3)
+                        {
+                            <a title="退款" onclick="order_Refund('@(item.ID)','@(item.transaction_id)','@(item.out_trade_no)','@(item.Price)')" href="javascript:;">
+                                <i class="icon iconfont">&#xe6e4;</i>
 
-                                <a title="退款" onclick="order_Refund('@(item.ID)','@(item.transaction_id)','@(item.out_trade_no)','@(item.Price)')" href="javascript:;">
-                                    <i class="icon iconfont">&#xe6e4;</i>
+                            </a>
+                        }
 
-                                </a>
-                            </td>
-                        </tr>
+                    </td>
+                </tr>
                     }
                 }
 
@@ -199,6 +208,7 @@
                     if (result.r) {
 
                         layer.msg("退款成功");
+                        window.location.reload();
                         
                     }
                     else {

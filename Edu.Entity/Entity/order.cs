@@ -40,11 +40,11 @@ namespace Edu.Entity
         /// </summary>
         public System.String MealName { get { return this._MealName; } set { this._MealName = value; } }
 
-        private System.Double? _Price;
+        private System.String _Price;
         /// <summary>
         /// 
         /// </summary>
-        public System.Double? Price { get { return this._Price; } set { this._Price = value; } }
+        public System.String Price { get { return this._Price; } set { this._Price = value; } }
 
         private System.String _WxID;
         /// <summary>

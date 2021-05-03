@@ -1,4 +1,5 @@
 ﻿
+using Edu.Tools;
 using System.Configuration;
 
 namespace Edu.Web.Pay
@@ -20,15 +21,15 @@ namespace Edu.Web.Pay
 
         public string GetAppID(){
             //return "wx9832dd5b51ec46f2";
-            return "wx33d6144e79376101";
+            return "wx1047cd69bf64c912";
         }
         public string GetMchID(){
             // return "1522987431";
-            return "1519542211";
+            return "1522987431";
         }
         public string GetKey(){
             //return "443ECC0790ED46EEB661B96B643A7EF7";
-            return "49C1F39F60AD2253456E3593E50515DE";
+            return "443ECC0790ED46EEB661B96B643A7EF7";
 
         }
         public string GetAppSecret(){
@@ -56,15 +57,15 @@ namespace Edu.Web.Pay
         /* 支付结果通知回调url，用于商户接收支付结果
         */
         public string GetNotifyUrl(){
-        //return "http://v2.cabrjzy.com//pay//pay_weixin_notify.aspx";
-        return ConfigurationSettings.AppSettings["server_ip_port"].ToString() + "/PayCommon/Notify";
+            //return "http://v2.cabrjzy.com//pay//pay_weixin_notify.aspx";
+            return ConfigHelper.GetConfigString("HttpUrl") + "/Common/Notify";
         }
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取
         */
         public string GetIp(){
-            return "119.3.74.142";
+            return "49.232.66.26";
         }
 
 
