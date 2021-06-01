@@ -58,6 +58,12 @@ namespace Edu.Web.Controllers
         public ActionResult Order_Refund(int ID,string transaction_id,string out_trade_no,double  price)
         {
             var order = unitOfWork.DOrder.GetByID(ID);
+
+            order.PayStatus = 3;
+
+            unitOfWork.DOrder.Update(order);
+
+            OperationResult result = unitOfWork.Save();
             try
             {
                 string resultRefund = Refund.Run(transaction_id, out_trade_no, (price * 100).ToString(), (price * 100).ToString());
@@ -67,11 +73,7 @@ namespace Edu.Web.Controllers
                 LogHelper.Info("退款失败日志：" + ex.ToString());
             }
            
-            order.PayStatus = 3;
-
-            unitOfWork.DOrder.Update(order);
-
-            OperationResult result = unitOfWork.Save();
+         
             if (result.ResultType == OperationResultType.Success)
             {
                 return Json(new { r = true, m = "" }, JsonRequestBehavior.AllowGet);

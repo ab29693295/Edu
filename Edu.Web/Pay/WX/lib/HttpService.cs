@@ -69,6 +69,7 @@ namespace Edu.Web.Pay
 
                     LogHelper.Info("证书路径："+ HttpContext.Current.Request.PhysicalApplicationPath);
                     string Certpath = HttpContext.Current.Request.PhysicalApplicationPath+ "apiclient_cert.p12";
+                    LogHelper.Info("证书完整路径：" + Certpath);
                     X509Certificate2 cert = new X509Certificate2(Certpath, "1522987431");
                     request.ClientCertificates.Add(cert);
                     Log.Debug("WxPayApi", "PostXml used cert");
