@@ -30,7 +30,7 @@
                 <!-- 二级菜单 -->
 
                 <dd><a onclick="x_admin_show('切换帐号','@Url.Action("Index","Login")')">切换帐号</a></dd>
-                <dd><a href="./login.html">退出</a></dd>
+                <dd><a href="@Url.Action("logout","Account")">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>

@@ -77,7 +77,8 @@ namespace Edu.Web.API
                 var equp = unitOfWork.DEquipment.GetByID(_order.EqID);
                 if (equp != null)
                 {
-
+                    _order.EqUserID = equp.UserID;
+                    
                 }
 
 

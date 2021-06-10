@@ -45,7 +45,7 @@
         {
             @Html.HiddenFor(p => p.ID)
             @Html.HiddenFor(p => p.Creator)
-
+            @Html.HiddenFor(p => p.RoleID)
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
@@ -173,7 +173,7 @@
 
 
             if (select.val() != 0) {
-                $("#Creator").val(select.val())
+                $("#RoleID").val(select.val())
 
                
             }
