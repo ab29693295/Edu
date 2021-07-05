@@ -212,6 +212,31 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chou\css\animate.min.css" />
+    <Content Include="Content\Chou\css\award.css" />
+    <Content Include="Content\Chou\images\1.png" />
+    <Content Include="Content\Chou\images\10.png" />
+    <Content Include="Content\Chou\images\11.png" />
+    <Content Include="Content\Chou\images\2.png" />
+    <Content Include="Content\Chou\images\3.png" />
+    <Content Include="Content\Chou\images\4.png" />
+    <Content Include="Content\Chou\images\5.png" />
+    <Content Include="Content\Chou\images\6.png" />
+    <Content Include="Content\Chou\images\7.png" />
+    <Content Include="Content\Chou\images\9.png" />
+    <Content Include="Content\Chou\images\cj_bg.png" />
+    <Content Include="Content\Chou\images\red5.png" />
+    <Content Include="Content\Chou\images\red6.png" />
+    <Content Include="Content\Chou\images\start.png" />
+    <Content Include="Content\Chou\images\turnplate-bg.png" />
+    <Content Include="Content\Chou\img\back.png" />
+    <Content Include="Content\Chou\img\back1.png" />
+    <Content Include="Content\Chou\img\bottom_shadow.png" />
+    <Content Include="Content\Chou\img\img_1.png" />
+    <Content Include="Content\Chou\img\img_2.png" />
+    <Content Include="Content\Chou\img\rule_title.png" />
+    <Content Include="Content\Chou\js\jquery.min.js" />
+    <Content Include="Content\Chou\js\turntable.js" />
     <Content Include="Content\X-Admin\admin-add.html" />
     <Content Include="Content\X-Admin\admin-cate.html" />
     <Content Include="Content\X-Admin\admin-edit.html" />
@@ -457,6 +482,7 @@
     <Content Include="Views\EquipMeal\Add.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\OrderFilter\Index.cshtml" />
+    <Content Include="Views\Home\ChouJ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

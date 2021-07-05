@@ -34,5 +34,13 @@ namespace Edu.Web.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 抽奖
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChouJ()
+        {
+            return View();
+        }
     }
 }
