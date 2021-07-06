@@ -68,6 +68,8 @@
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\OrderPhoto.cs" />
     <Compile Include="Entity\PhotoBorder.cs" />
+    <Compile Include="Entity\Prize.cs" />
+    <Compile Include="Entity\Prizeuser.cs" />
     <Compile Include="Entity\RoleInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\UserInfo.cs" />

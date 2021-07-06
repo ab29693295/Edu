@@ -23,6 +23,36 @@ namespace Edu.Service
                 return _DEduContext;
             }
         }
+
+        private DPrize _DPrize;
+
+        public DPrize DPrize
+        {
+            get
+            {
+                if (this._DPrize == null)
+                {
+                    this._DPrize = new DPrize(context);
+                }
+                return _DPrize;
+            }
+        }
+
+        private DPrizeuser _DPrizeuser;
+
+        public DPrizeuser DPrizeuser
+        {
+            get
+            {
+                if (this._DPrizeuser == null)
+                {
+                    this._DPrizeuser = new DPrizeuser(context);
+                }
+                return _DPrizeuser;
+            }
+        }
+
+
         private DLogInfo _DLogInfo;
 
         public DLogInfo DLogInfo

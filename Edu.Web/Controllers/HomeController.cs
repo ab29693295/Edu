@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Edu.Web.Controllers
 {
-    public class HomeController : UserBaseController
+    public class HomeController : BaseControl
     {
         public ActionResult Index()
         {
@@ -40,7 +40,9 @@ namespace Edu.Web.Controllers
         /// <returns></returns>
         public ActionResult ChouJ()
         {
-            return View();
+
+            var PrizeList = unitOfWork.DPrize.GetAll();
+            return View(PrizeList);
         }
     }
 }
